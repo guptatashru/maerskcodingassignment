@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <style>
+         .parent-grid-container{
+         display: grid;
+         grid-template-columns: 360px 120px;
+         grid-template-rows: 360px;
+         background-color: #EFEFEF;
+         border-top: 2px solid grey;
+         }
+         .grid-container {
+         display: grid;
+         grid-template-columns: 120px 120px 120px ;
+         grid-template-rows: 120px 120px 120px ;
+         color: #FFF;
+         text-align: center;
+         font-size:30px;
+         }
+         .grid-container > div{
+         padding:20px;
+         }
+         .grid-item-2, .grid-item-4 {
+         background-color: #2B8EAD;
+         }
+         .grid-item-none{
+         background-color: #EFEFEF;
+         }
+         .grid-item-1, .grid-item-8 {
+         background-color: #6F98A8;
+         }
+         .grid-item-6, .grid-item-7 {
+         background-color: #BFBFBF;
+         }
+         .grid-item-3, .grid-item-5, .grid-item-9 {
+         background-color: #2F454E;
+         }
+         #button-group{
+         display: grid;
+         margin: 14px;    
+         grid-template-rows: 60px 60px;
+         grid-template: rows:91px;    
+         } 
+         .button-style{
+         background-color: #72C3DC;
+         border: none;
+         padding: 8px;
+         margin-bottom: 4px;    
+         border-radius: 4px;    
+         color: #FFFFFF;
+         box-shadow: 0px 3px #2b8ead;
+         }
+         @media only screen and (max-width:600px){
+         .grid-container{
+         grid-template-columns:auto;
+         }
+         .page-header{
+         color:#ffffff;
+         background-color:#000000;
+         margin:0;
+         }
+         .grid-item{
+         background-color:#cccccc;
+         }
+         .grid-item-2, .grid-item-4 {
+         border-left: 5px solid #2B8EAD;
+         }
+         .grid-item-none{
+         border-left: 5px solid #EFEFEF;
+         }
+         .grid-item-1, .grid-item-8 {
+         border-left:  5px solid #6F98A8;
+         }
+         .grid-item-6, .grid-item-7 {
+         border-left: 5px solid #BFBFBF;
+         }
+         .grid-item-3, .grid-item-5, .grid-item-9 {
+         border-left:  5px solid #2F454E;
+         }
+         }
+      </style>
+   </head>
+   <body>
+      <p style="text-align:center" class="page-header">Shuffle and Sort</p>
+      <div class="parent-grid-container">
+         <div  class="grid-container">
+            <div class="grid-item grid-item-1" data-value="1">1</div>
+            <div class="grid-item grid-item-2" data-value="2">2</div>
+            <div class="grid-item grid-item-3" data-value="3">3</div>
+            <div class="grid-item grid-item-4" data-value="4">4</div>
+            <div class="grid-item grid-item-5" data-value="5">5</div>
+            <div class="grid-item grid-item-6" data-value="6">6</div>
+            <div class="grid-item grid-item-7" data-value="7">7</div>
+            <div class="grid-item grid-item-8" data-value="8">8</div>
+            <div class="grid-item grid-item-9" data-value="9">9</div>
+         </div>
+         <div class="col1" id= "button-group"  >
+            <button class="order button-style" id="asc" data-order="shuffleByValue" onclick="shuffleByValue()">SHUFFLE</button>
+            <button class="order button-style" id="dec" data-order="sortByValue" onclick="sortByValue()">SORT</button>
+         </div>
+      </div>
+      <div style="text-align:center;font-style: italic;
+         font-size: 14px;">Shuffle and sort by Shruti</div>
+      <script>
+         var gridItems = document.getElementsByClassName("grid-item");
+         
+          function shuffleByValue(){
+             var currentIndex = gridItems.length, temp, randomIndex;
+             while (0 !== currentIndex) {
+               randomIndex = Math.floor(Math.random() * currentIndex);
+               currentIndex -= 1;
+               temp = gridItems[currentIndex].innerHTML;
+               gridItems[currentIndex].innerHTML = gridItems[randomIndex].innerHTML;
+               gridItems[randomIndex].innerHTML = temp;
+            }  
+          }
+          
+          
+          function sortByValue(){  
+           var flag = false;
+           while (!flag) {
+         	flag = true;
+         	for (var i = 1; i < gridItems.length; i += 1) {
+         	  if (gridItems[i - 1].innerHTML > gridItems[i].innerHTML) {
+         		flag = false;
+         		var tmp = gridItems[i - 1].innerHTML;
+         		gridItems[i - 1].innerHTML = gridItems[i].innerHTML;
+         		gridItems[i].innerHTML = tmp;
+         	  }
+         	}
+           } 
+         } 
+         
+      </script>
+   </body>
+</html>
